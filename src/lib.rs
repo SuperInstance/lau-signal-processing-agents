@@ -15,6 +15,8 @@
 //! - `compressed_sensing`: Recover sparse signals from few observations
 //! - `pipeline`: Agent observation pipeline — raw signal → filtered → features
 
+#![allow(clippy::needless_range_loop, clippy::get_first, clippy::manual_is_multiple_of, clippy::manual_abs_diff)]
+
 pub mod adaptive;
 pub mod compressed_sensing;
 pub mod filtering;
@@ -27,3 +29,4 @@ pub mod wiener;
 pub mod windowing;
 
 pub use num_complex::Complex64;
+pub use fourier::{fft, ifft, zero_pad_to_power2};

@@ -118,7 +118,7 @@ impl NlmsFilter {
         let error = desired - output;
 
         // Input power
-        let input_power: f64 = self.buffer.iter().map(|x| x * x).sum() + self.epsilon;
+        let input_power: f64 = self.buffer.iter().map(|x| x * x).sum::<f64>() + self.epsilon;
 
         for i in 0..order {
             let buf_idx = (self.idx + order - 1 - i) % order;

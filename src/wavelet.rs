@@ -220,7 +220,7 @@ pub fn wavelet_denoise(signal: &[f64], levels: usize) -> Vec<f64> {
         &decomp.details.last().cloned().unwrap_or_default(),
     );
 
-    let mut denoised_details: Vec<Vec<f64>> = decomp.details
+    let denoised_details: Vec<Vec<f64>> = decomp.details
         .iter()
         .map(|d| soft_threshold(d, threshold))
         .collect();

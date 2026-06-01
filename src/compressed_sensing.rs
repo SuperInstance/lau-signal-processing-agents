@@ -1,6 +1,5 @@
 //! Compressed sensing: recover sparse signals from few observations
 
-use crate::fft;
 
 /// Compressed sensing reconstruction using Iterative Hard Thresholding (IHT)
 /// Recovers a sparse signal from undersampled measurements
@@ -11,14 +10,14 @@ pub fn iterative_hard_thresholding(
     max_iterations: usize,
     tolerance: f64,
 ) -> Vec<f64> {
-    let m = measurements.len();
+    let _m = measurements.len();
     let n = sensing_matrix[0].len();
 
     let mut x = vec![0.0; n];
 
     // Compute step size (upper bound: 1 / largest singular value of A'A)
     // Approximate as 1 / (max row norm squared)
-    let mut step = 0.0;
+    let mut step: f64 = 0.0;
     for row in sensing_matrix {
         let norm_sq: f64 = row.iter().map(|v| v * v).sum();
         step = step.max(norm_sq);
@@ -151,7 +150,7 @@ pub fn basis_pursuit_denoising(
     let mut x = vec![0.0; n];
 
     // Step size
-    let mut lip = 0.0;
+    let mut lip: f64 = 0.0;
     for row in sensing_matrix {
         let norm_sq: f64 = row.iter().map(|v| v * v).sum();
         lip = lip.max(norm_sq);
@@ -233,7 +232,7 @@ pub fn coherence(matrix: &[Vec<f64>]) -> f64 {
         }
     }
 
-    let mut max_coherence = 0.0;
+    let mut max_coherence: f64 = 0.0;
     for i in 0..n {
         let norm_i: f64 = cols[i].iter().map(|x| x * x).sum::<f64>().sqrt();
         for j in (i + 1)..n {

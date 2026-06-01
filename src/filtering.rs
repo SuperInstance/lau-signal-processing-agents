@@ -146,11 +146,11 @@ impl IirFilter {
 
     /// Process a single sample (Direct Form II Transposed)
     pub fn process_sample(&mut self, input: f64) -> f64 {
-        let nb = self.b.len();
-        let na = self.a.len();
+        let _nb = self.b.len();
+        let _na = self.a.len();
         let state_len = self.state.len();
 
-        let mut output = self.b.get(0).copied().unwrap_or(0.0) * input + self.state[0];
+        let output = self.b.get(0).copied().unwrap_or(0.0) * input + self.state[0];
 
         for i in 0..state_len.saturating_sub(1) {
             self.state[i] = self.b.get(i + 1).copied().unwrap_or(0.0) * input

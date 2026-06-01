@@ -23,8 +23,8 @@ impl WienerFilter {
             .collect();
 
         WienerFilter {
-            frequency_response: freq_resp,
             length: freq_resp.len(),
+            frequency_response: freq_resp,
         }
     }
 
@@ -48,7 +48,7 @@ impl WienerFilter {
 
     /// Apply the Wiener filter to a noisy signal
     pub fn filter(&self, noisy_signal: &[f64]) -> Vec<f64> {
-        let n = noisy_signal.len();
+        let _n = noisy_signal.len();
         let spectrum = fft(noisy_signal);
 
         // Apply frequency domain filter

@@ -1,6 +1,6 @@
 //! Power spectral density: Welch's method, periodogram
 
-use crate::{fft, zero_pad_to_power2, Complex64};
+use crate::fft;
 use crate::windowing;
 
 /// Compute the periodogram (non-parametric PSD estimate)
