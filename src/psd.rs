@@ -228,8 +228,8 @@ mod tests {
     fn test_welch_num_segments() {
         let signal = vec![0.0; 128];
         let result = welch(&signal, 1000.0, 64, 32, WindowType::Hanning);
-        // 128 / (64 - 32) = 4 segments (positions 0, 32, 64, 96)
-        assert_eq!(result.num_segments, 4);
+        // 128 signal, step=32: positions 0, 32, 64 fit (96+64=160>128)
+        assert_eq!(result.num_segments, 3);
     }
 
     #[test]

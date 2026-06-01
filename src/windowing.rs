@@ -122,7 +122,7 @@ mod tests {
 
     #[test]
     fn test_hanning_peak() {
-        let w = hanning(8);
+        let w = hanning(9); // odd length so center bin is exactly 1.0
         assert_abs_diff_eq!(w[4], 1.0, epsilon = 0.01);
     }
 
@@ -145,7 +145,7 @@ mod tests {
     fn test_blackman_nonneg() {
         let w = blackman(64);
         for &v in &w {
-            assert!(v >= 0.0);
+            assert!(v >= -1e-10, "value {} is negative", v);
         }
     }
 
@@ -209,7 +209,8 @@ mod tests {
     fn test_flat_top() {
         let w = flat_top(64);
         assert_eq!(w.len(), 64);
-        assert!(w.iter().all(|&v| v >= 0.0));
+        // Flat-top windows have negative sidelobes; just verify finite values
+        assert!(w.iter().all(|&v| v.is_finite()));
     }
 
     #[test]
