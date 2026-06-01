@@ -1,0 +1,15 @@
+[package]
+name = "lau-signal-processing-agents"
+version = "0.1.0"
+edition = "2021"
+description = "Signal processing for agent observations — extract structure from noisy signals"
+license = "MIT"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+nalgebra = "0.33"
+num-complex = "0.4"
+num-traits = "0.2"
+
+[dev-dependencies]
+approx = "0.5"
